@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+//    id("org.jetbrains.kotlin.kapt")
+
+    id("com.google.devtools.ksp") version "2.0.21-1.0.28"
 }
 
 android {
@@ -49,6 +52,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.compose.runtime.livedata)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -56,4 +61,27 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    // // Retrofit - Main library
+    // (Handles HTTP connections, requests, responses)
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    // Gson Converter - Converts JSON to Kotlin objects
+    // (Converts JSON -> Kotlin Data Class and vice versa)
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // Room
+    implementation("androidx.room:room-runtime:2.6.1")
+    //    kapt("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
+
+    // Coroutines + Lifecycle
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.2")
+
+    // Compose (optional if using Compose UI)
+    implementation("androidx.compose.ui:ui:1.7.0")
+    implementation("androidx.compose.material:material:1.7.0")
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.2")
 }
